@@ -14,9 +14,7 @@ def get_login_token():
     }
     r = requests.post('https://context.newsai.org/api/jwt-token/',
                       headers=headers, data=json.dumps(payload), verify=False)
-    data = json.loads(r.text)
-    token = data['token']
-    return token
+    return r.json()['token']
 
 
 def post_article(url):
@@ -32,5 +30,4 @@ def post_article(url):
 
     r = requests.post('https://context.newsai.org/api/articles/',
                       headers=headers, data=json.dumps(payload), verify=False)
-    data = json.loads(r.text)
-    return data
+    return r.json()
